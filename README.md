@@ -1,99 +1,107 @@
-# Project Overview
+Overview of Project
 
-Проект представляет собой систему управления книгами с регистрацией пользователей и авторизации. Используются следующие классы:
+This project represents a book manager with user registration and authentication. It includes the following classes:
 
-## Классы
+## Classes
 
 ### Main
 
-Класс Main является точкой входа в приложение. Он обеспечивает взаимодействие пользователя с системой, включая в себя меню для регистрации, входа в систему, добавления книг, поиска книг(по ISBN, по автору, по названию) и с возможностью просмотра всех книг.
+The class `Main` is the entry point of this application. It provides the interaction of users with the system - menus for registration, login, adding books, searching for books (by ISBN, author, title), and the ability to view all books.
 
 ### DatabaseManager
 
-DatabaseManager класс отвечающий за управление подключением к базе данных. Использует design pattern 'Singleton' для обеспечения единственного подключения к базе данных.
+DatabaseManager class is responsible for managing the database connection. It uses the Singleton Design Pattern to ensure a single database connection.
 
-#### Поля
-- dbUrl: URL базы данных
-- dbUser: Пользователь базы данных
-- dbPassword: Пароль базы данных
+#### Fields
+- `dbUrl`: Database URL
+- `dbUser`: Database user
+- `dbPassword`: Database password
 
-#### Методы
-- getInstance(String dbUrl, String dbUser, String dbPassword): Возвращает единственный экземпляр "DatabaseManager"
-- getDbUrl(): Возвращает URL базы данных
-- getDbUser(): Возвращает имя базы данных
-- getDbPassword(): Возвращает пароль базы данных
+#### Methods
+- `getInstance(String dbUrl, String dbUser, String dbPassword)`: Returns the singleton instance of `DatabaseManager`
+- `getDbUrl()`: Returns the database URL
+- `getDbUser()`: Returns the database user
+- `getDbPassword()`: Returns the database password
 
 ### Book
 
-Класс Book представляет собой модель книги. Он содержит информацию о книге, такую как ISBN, название, автор, дата публикации и ссылка.
+The `Book` class is a model that represents a book. It includes ISBN, title, author, publication date, and link.
 
-#### Поля
-- isbn: ISBN книги
-- title: Название книги
-- author: Автор книги
-- publishedDate: Дата публикации
-- readCount: Количество прочтений
-- link: Ссылка на книгу
+#### Fields
 
-#### Методы
-- Геттеры и сеттеры для всех полей
+* `isbn`: Book ISBN
+* `title`: Book title
+* `author`: Book author
+* `publishedDate`: Publish date
+* `readCount`: Read count
+* `link`: Link to the book
+
+#### Methods
+
+* Getters and setters for all fields
 
 ### User
 
-Абстрактный класс User, коротко говоря общее представление о пользователе.
+The abstract class of `User` represents the general user.
 
-#### Поля
+#### Fields
 
-* username: Username
-* password: User password
-* email: User email
+* `username`: Username
+* `password`: User password
+* `email`: User email
 
-#### Методы
+#### Methods
 
-* Геттеры и сеттеры
-* Абстрактный метод isAdmin(): возвращает «True», если пользователь является администратором, и «False» в противном случае.
+* Getters and setters
+* Abstract method `isAdmin()`: returns `true` if the user is an admin, and `false` otherwise.
 
 ### AdminUser
 
-Класс AdminUser расширяет класс User и представляет администратора системы.
+The `AdminUser` class extends the class `User`, and it should represent a system administrator.
 
-#### Методы
+#### Methods
 
-* isAdmin(): Возвращает "true"
+* `isAdmin()`: Returns `true`
 
 ### RegularUser
 
-Класс RegularUser наследует класс "User" и представляет обычного пользователя системы.
+The `RegularUser` class extends the class `User` and should represent a regular system user.
 
-#### Методы
-- isAdmin(): Возвращает "false"
+#### Methods
+
+- `isAdmin()`: Returns `false`
 
 ### UserRegistration
 
-Класс "UserRegistration" отвечает за регистрацию и авторизацию пользователей в системе.
+The class `UserRegistration` is responsible for user registration and authentication in the system.
 
-#### Методы
-- registerUser(String username, String password, boolean isAdmin, String email): Регистрирует нового пользователя в базе данных
-- loginUser(String username, String password): Выполняет авторизацию пользователя
+#### Methods
+- `registerUser(String username, String password, boolean isAdmin, String email)`: Signs up a new user in the database
+- `loginUser(String username, String password)`: Logs in a user
 
 ### BookManager
 
-Класс "BookManager" отвечает за управление книгами в системе.
+The `BookManager` class is responsible for managing books in the system.
 
-#### Методы
-- addBook(Book book): Добавляет книгу в базу данных
-- getBookByISBN(String isbn): Получает книгу по ISBN
-- getBookByTitle(String title): Gets book by title
-- getBookByAuthor(String author): Gets book by author
-- getAllBooks(): Gives the list of all books
+#### Methods
 
-## Дизайн-паттерны
+- `addBook(Book book)`: Adds a book to the database
+- `getBookByISBN(String isbn)`: Retrieves a book by ISBN
+- `getBookByTitle(String title)`: Retrieves a book by title
+- `getBookByAuthor(String author)`: Retrieves a book by author
+- `getAllBooks()`: Returns the list of all books
 
-В проекте используются следующие дизайн-паттерны:
+## Design Patterns
 
-### Singleton (Одиночка)
+The following design patterns have been implemented in the project:
 
-В DatabaseManager реализован шаблон Singleton для предоставления уникального экземпляра подключения к базе данных, предотвращающего размножение экземпляров этого типа класса.
+### Singleton
+
+The class `DatabaseManager` uses the Singleton pattern for providing one single instance of database connection; that way, there cannot be several instances of this class.
+
+### Factory Method
+
+The `UserRegistration` class uses a Factory Method for instantiating either an `AdminUser` or a `RegularUser` based on the field `isAdmin`.
 
 
 cd /c/Users/diyar/IdeaProjects/YessetDiyarEndTerm
