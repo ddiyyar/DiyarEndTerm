@@ -93,6 +93,8 @@ DatabaseManager класс отвечающий за управление под
 
 ### Singleton (Одиночка)
 
+В DatabaseManager реализован шаблон Singleton для предоставления уникального экземпляра подключения к базе данных, предотвращающего размножение экземпляров этого типа класса.
+
 
 cd /c/Users/diyar/IdeaProjects/YessetDiyarEndTerm
 git add .
